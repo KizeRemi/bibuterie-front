@@ -17,16 +17,24 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
       </div>
       {loading ? 'loading...' : (
         <>
-          <div class="block lg:hidden h-auto">
-            <button class="flex items-center px-3 py-2 border rounded text-gray-900 border-teal-400">
-              <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">Menu<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-            </button>
-          </div>
           <div class="w-full h-full block lg:flex flex-grow relative lg:w-auto">
+
+            <div class="block lg:hidden h-auto">
+              <button class="flex items-center px-3 py-2 border rounded text-gray-900 border-teal-400">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">Menu<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+              </button>
+            </div>
             <div class="flex-col relative text-sm items-center lg:flex-grow h-full">
+              <Link href="/dog-classifieds-listing">
+                <button
+                  className={`h-full block hover:bg-gray-200 tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900 px-4 mr-4`}
+                  >
+                  Annonces
+                </button>
+              </Link>
               <button
                 onClick={showMenu('breed-menu')}
-                className={`h-full hover:bg-gray-200 tracking-normal ${currentMenu === 'breed-menu' ? 'border-b-2 border-gray-600' : ''} font-semibold lg:inline-block lg:mt-0 text-gray-900 px-4 mr-4`}
+                className={`h-full hover:bg-gray-200 tracking-normal ${currentMenu === 'breed-menu' ? 'border-b-2 border-pink-900' : ''} font-semibold lg:inline-block lg:mt-0 text-gray-900 px-4 mr-4`}
               >
                 Races de chiens
               </button>
@@ -49,8 +57,13 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
                     Je possède un élevage
                   </a>
                 </Link>
+                <Link href="/add-classified">
+                  <a class="inline-block text-xs px-4 py-2 mr-4 leading-none rounded-full font-bold uppercase border-2 border-gray-300 mt-4 lg:mt-0">
+                    Publier une annonce
+                  </a>
+                </Link>
                 {user.attributes.picture && (
-                  <img class="w-10 h-10 rounded-full mr-4" src={user.attributes.picture} alt={`Avatar de ${user.attributes.name}`} />
+                  <img class="w-8 h-8 rounded-full mr-4" src={user.attributes.picture} alt={`Avatar de ${user.attributes.name}`} />
                 )}
                 <button
                   className="inline-block text-sm px-4 leading-none border rounded text-black border-black lg:mt-0"

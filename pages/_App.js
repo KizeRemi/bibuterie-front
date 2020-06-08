@@ -1,17 +1,16 @@
-import React from 'react';
+import App from 'next/app';
 import withApollo from 'next-with-apollo';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
-
-import App from 'next/app';
-import '../css/tailwind.css';
-
 import Amplify, { Auth, Hub } from 'aws-amplify';
-import authConfig from '../aws/awsConfig';
 
+
+import "react-step-progress-bar/styles.css";
+import authConfig from '../aws/awsConfig';
 import NavBar from '../components/NavBar';
 
+import '../css/tailwind.css';
 
 Amplify.configure(authConfig);
 
@@ -57,9 +56,10 @@ class MyApp extends App {
 
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, apollo } = this.props;
+
     return (
-      <ApolloProvider client={this.props.apollo}>
+      <ApolloProvider client={apollo}>
         <NavBar
           user={this.state.user}
           loading={this.state.loading}
@@ -75,6 +75,7 @@ class MyApp extends App {
 
 MyApp.getInitialProps = async appContext => {
   const appProps = await App.getInitialProps(appContext);
+
   return { ...appProps }
 }
 
@@ -83,12 +84,16 @@ export default withApollo(({ initialState }) => {
     uri: 'http://localhost:4000/graphql',
     cache: new InMemoryCache().restore(initialState || {}),
     request: async (operation) => {
-      const { accessToken } = await Auth.currentSession();
-      operation.setContext({
-        headers: {
-          authorization: accessToken ? accessToken.jwtToken : '',
-        }
-      })
+      try {
+        const { accessToken } = await Auth.currentSession();
+        operation.setContext({
+          headers: {
+            authorization: accessToken ? accessToken.jwtToken : '',
+          }
+        })
+      } catch (e) {
+        console.log(e);
+      }
     }
   });
 }, { getDataFromTree })(MyApp, { getDataFromTree });

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import gql from 'graphql-tag';
 import { useForm } from "react-hook-form";
 import { useMutation } from '@apollo/react-hooks';
-import Amplify, { Auth, Hub } from 'aws-amplify';
+import { Emoji } from 'emoji-mart';
 
 const ADD_DOG_FARM = gql`
   mutation addDogFarm($input: DogFarmInput!) {
@@ -34,7 +34,7 @@ const AddDogFarm = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto py-16">
-        <h1 className="text-3xl font-bold tracking-wider mb-12">Ajouter votre élevage</h1>
+        <h1 className="text-3xl font-bold tracking-wider mb-12">Ajouter votre élevage<Emoji emoji={{ id: 'house_with_garden' }} size={28} /></h1>
         <div className="grid grid-cols-2 gap-4">
           <div className="w-full bg-gray-100" />
           <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
@@ -102,12 +102,13 @@ const AddDogFarm = () => {
               </label>
               <textarea
                 ref={register}
+                rows={6}
                 name="description"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <div className="col-span-2 my-6">
-            <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            <button type="submit" class="bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
               <span>Étape suivante</span>
             </button>
             </div>

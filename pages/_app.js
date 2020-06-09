@@ -81,7 +81,7 @@ MyApp.getInitialProps = async appContext => {
 
 export default withApollo(({ initialState }) => {
   return new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
+    uri: process.env.NODE_ENV === 'production' ? 'https://bibuterie-api.herokuapp.com/graphql' : 'http://localhost:4000/graphql',
     cache: new InMemoryCache().restore(initialState || {}),
     request: async (operation) => {
       try {

@@ -7,8 +7,8 @@ export default {
     oauth: {
         domain: 'bibuterie.auth.eu-west-1.amazoncognito.com',
         scope: ['email', 'profile', 'openid'],
-        redirectSignIn: 'http://localhost:3000/',
-        redirectSignOut: 'http://localhost:3000/',
+        redirectSignIn: process.env.NODE_ENV === 'production' ? 'https://bibuterie-front.herokuapp.com' : 'http://localhost:3000/',
+        redirectSignOut:  process.env.NODE_ENV === 'production' ? 'https://bibuterie-front.herokuapp.com' : 'http://localhost:3000/',
         responseType: 'code'
     }
 }

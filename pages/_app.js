@@ -5,11 +5,10 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 import Amplify, { Auth, Hub } from 'aws-amplify';
 
-
-import "react-step-progress-bar/styles.css";
 import authConfig from '../aws/awsConfig';
 import NavBar from '../components/NavBar';
 
+import "react-step-progress-bar/styles.css";
 import '../css/tailwind.css';
 
 Amplify.configure(authConfig);
@@ -17,10 +16,7 @@ Amplify.configure(authConfig);
 class MyApp extends App {
   constructor(props) {
     super(props);
-    this.state = {
-      user: null,
-      loading: false,
-    }
+    this.state = { user: null, loading: false };
   }
 
   componentDidMount() {
@@ -39,7 +35,7 @@ class MyApp extends App {
       } catch (e) {
         console.log(e);
       }
-      this.setState({ loading: false})
+      this.setState({ loading: false });
     };
     loginIn();
   }

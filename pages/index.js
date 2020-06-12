@@ -38,7 +38,7 @@ export default function Home() {
             <h2 className="text-4xl my-2">Bienvenue sur la bibuterie !</h2>
             <div className="text-2xl mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
             <Link href="/dog-classifieds-listing">
-              <a className="bg-blue-900 border-blue-900 hover:bg-white text-white hover:text-blue-900 border-2 hover:border-blue-900 font-bold py-4 px-12 inline-flex items-center">
+              <a className="bg-blue-900 border-blue-900 hover:bg-white text-white hover:text-blue-900 border-2 uppercase tracking-wider hover:border-blue-900 font-bold py-4 px-12 inline-flex items-center">
                 <span>Adopter un chiot</span>
               </a>
             </Link>
@@ -89,7 +89,7 @@ export default function Home() {
                       Urgent
                     </div>
                   </div>
-                  <img className="w-full" src="http://lorempixel.com/500/400/animals/" />
+                  <img className="w-full" src="https://loremflickr.com/500/400/dog" />
                   <div class="w-full bg-white p-4 flex flex-col justify-between leading-normal">
                     <div class="flex flex-row justify-between text-pink-900 uppercase font-bold text-sm mb-2">
                       <span>{dogClassified.name}, {dogClassified.dogBreed.name}</span>

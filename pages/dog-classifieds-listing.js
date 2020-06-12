@@ -41,7 +41,7 @@ const dogClassifiedsListing = () => {
               {getDogClassifieds.map(dogClassified => (
                 <div class="max-w-sm w-full lg:max-w-full lg:flex">
                   <div class="w-4/12 flex-none bg-cover text-center overflow-hidden" title="Woman holding a mug">
-                    <img className="h-full" src="http://lorempixel.com/500/300/animals/" />
+                    <img className="h-full" src="https://loremflickr.com/500/300/dog" />
                   </div>
                   <div class="border-r w-full border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white p-4 flex flex-col justify-between leading-normal">
                     <div class="mb-8">

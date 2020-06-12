@@ -3,6 +3,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Emoji } from 'emoji-mart';
 import { useQuery } from '@apollo/react-hooks';
+import { Favorite } from 'grommet-icons';
 
 const GET_DOG_CLASSIFIEDS = gql`
   query getDogClassifieds {
@@ -39,22 +40,27 @@ const dogClassifiedsListing = () => {
             <>
               {getDogClassifieds.map(dogClassified => (
                 <div class="max-w-sm w-full lg:max-w-full lg:flex">
-                  <div class="w-4/12 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" title="Woman holding a mug">
+                  <div class="w-4/12 flex-none bg-cover text-center overflow-hidden" title="Woman holding a mug">
                     <img className="h-full" src="http://lorempixel.com/500/300/animals/" />
                   </div>
-                  <div class="border-r w-full border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                  <div class="border-r w-full border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white p-4 flex flex-col justify-between leading-normal">
                     <div class="mb-8">
-                      <p class="text-sm text-gray-600 flex items-center">
+                      <div class="text-sm text-gray-600 flex items-center flex flex-row justify-between">
                         Donation par un Particulier
-                      </p>
-                      <div class="text-gray-900 font-bold text-xl mb-2">{dogClassified.name}, {dogClassified.dogBreed.name}</div>
+                        <Favorite />
+                      </div>
+                      <div class="text-pink-900 font-bold text-xl mb-2">
+                        {dogClassified.name}, {dogClassified.dogBreed.name}
+                      </div>
                       <p class="text-gray-700 text-base">{dogClassified.description}</p>
                     </div>
-                    <div class="flex items-center">
-                      <img class="w-10 h-10 rounded-full mr-4" src={dogClassified.classifiedUser.picture} alt="Avatar of Jonathan Reinink" />
-                      <div class="text-sm">
+                    <div class="flex flex-row justify-between items-center">
+                      <div class="text-sm flex flex-row items-center">
+                        <img class="w-10 h-10 rounded-full mr-4" src={dogClassified.classifiedUser.picture} alt="Avatar of Jonathan Reinink" />
                         <p class="text-gray-900 leading-none">{dogClassified.classifiedUser.name}</p>
-                        <p class="text-gray-600">Aug 18</p>
+                      </div>
+                      <div class="bg-blue-900 self-end w-32 transform translate-x-8 text-center text-white p-2">
+                        DONATION
                       </div>
                     </div>
                   </div>

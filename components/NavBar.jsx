@@ -44,9 +44,11 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
                 </Link>
                 <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Quelle race pour mon quotidien ?</a>
               </div>
-              <button class="h-full font-semibold tracking-normal overflow-hidden block px-4 lg:inline-block lg:mt-0 text-gray-900 mr-4">
-                Balades
-              </button>
+              <Link href="/app-walking">
+                <button class="h-full font-semibold tracking-normal overflow-hidden block px-4 lg:inline-block lg:mt-0 text-gray-900 mr-4">
+                  Balades
+                </button>
+              </Link>
             </div>
           </div>
           <div className="w-full block lg:flex relative lg:w-auto">

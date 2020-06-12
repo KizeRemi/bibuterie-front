@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import HomeImage from '../components/HomeImg';
+import { Compliance, Chat, Validate, Group, Favorite } from 'grommet-icons';
 import Dog from '../components/Dog';
 
 const GET_DOG_CLASSIFIEDS = gql`
@@ -54,24 +54,22 @@ export default function Home() {
         </div>
 
         <h1 className="text-2xl font-bold uppercase text-center tracking-wider">La bibuterie - Annonces de chiots et balades</h1>
-        <div className="my-8 flex justify-around h-32 uppercase text-sm text-gray-600 font-semibold items-center">
+        <div className="my-12 flex justify-around h-32 uppercase text-sm text-pink-900 font-semibold items-center">
           <div className="flex items-center flex-col">
-            <svg class="fill-current inline-block h-12 w-12 my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M18 9.87V20H2V9.87a4.25 4.25 0 0 0 3-.38V14h10V9.5a4.26 4.26 0 0 0 3 .37zM3 0h4l-.67 6.03A3.43 3.43 0 0 1 3 9C1.34 9 .42 7.73.95 6.15L3 0zm5 0h4l.7 6.3c.17 1.5-.91 2.7-2.42 2.7h-.56A2.38 2.38 0 0 1 7.3 6.3L8 0zm5 0h4l2.05 6.15C19.58 7.73 18.65 9 17 9a3.42 3.42 0 0 1-3.33-2.97L13 0z"/>
-            </svg>
-            Annonce de qualité
+            <Compliance size="large" color="#C2908d" />
+            <div className="m-5">Annonce de qualité</div>
           </div>
           <div className="flex items-center text-bold flex-col">
-            <svg class="fill-current inline-block h-12 w-12 my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M18 9.87V20H2V9.87a4.25 4.25 0 0 0 3-.38V14h10V9.5a4.26 4.26 0 0 0 3 .37zM3 0h4l-.67 6.03A3.43 3.43 0 0 1 3 9C1.34 9 .42 7.73.95 6.15L3 0zm5 0h4l.7 6.3c.17 1.5-.91 2.7-2.42 2.7h-.56A2.38 2.38 0 0 1 7.3 6.3L8 0zm5 0h4l2.05 6.15C19.58 7.73 18.65 9 17 9a3.42 3.42 0 0 1-3.33-2.97L13 0z"/>
-            </svg>
-            Race adapté pour vous
+            <Validate size="large" color="#C2908d" />
+            <div className="m-5">Race adapté pour vous</div>
           </div>
           <div className="flex items-center flex-col">
-            <svg class="fill-current inline-block h-12 w-12 my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M18 9.87V20H2V9.87a4.25 4.25 0 0 0 3-.38V14h10V9.5a4.26 4.26 0 0 0 3 .37zM3 0h4l-.67 6.03A3.43 3.43 0 0 1 3 9C1.34 9 .42 7.73.95 6.15L3 0zm5 0h4l.7 6.3c.17 1.5-.91 2.7-2.42 2.7h-.56A2.38 2.38 0 0 1 7.3 6.3L8 0zm5 0h4l2.05 6.15C19.58 7.73 18.65 9 17 9a3.42 3.42 0 0 1-3.33-2.97L13 0z"/>
-            </svg>
-            Balade proche de chez vous
+            <Chat size="large" color="#C2908d" />
+            <div className="m-5">Messagerie interne</div>
+          </div>
+          <div className="flex items-center flex-col">
+            <Group size="large" color="#C2908d" />
+            <div className="m-5">Promenades collectives</div>
           </div>
         </div>
         <h2 className="text-2xl mb-4 font-bold tracking-wider">Dernières annonces de chiots</h2>
@@ -91,16 +89,14 @@ export default function Home() {
                       Urgent
                     </div>
                   </div>
-                  <img className="w-full" src="http://lorempixel.com/500/300/animals/" />
+                  <img className="w-full" src="http://lorempixel.com/500/400/animals/" />
                   <div class="w-full bg-white p-4 flex flex-col justify-between leading-normal">
-                    <div class="text-pink-900 uppercase font-bold text-sm mb-2">
-                      {dogClassified.name}, {dogClassified.dogBreed.name}
+                    <div class="flex flex-row justify-between text-pink-900 uppercase font-bold text-sm mb-2">
+                      <span>{dogClassified.name}, {dogClassified.dogBreed.name}</span>
+                      <Favorite size="medium" />
                     </div>
                     <div class="text-gray-600 text-sm">
                       2 mois
-                    </div>
-                    <div class="text-gray-600 text-sm mb-2">
-                      Disponible
                     </div>
                     <div class="bg-blue-900 self-end w-32 transform translate-x-8 text-center text-white p-2">
                       DONATION

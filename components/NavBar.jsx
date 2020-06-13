@@ -60,7 +60,7 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
                   </a>
                 </Link>
                 <Link href="/add-classified">
-                  <a class="inline-block text-xs px-4 py-2 mr-4 leading-none rounded-full font-bold uppercase border-2 border-gray-300 mt-4 lg:mt-0">
+                  <a class="gradient inline-block text-white text-xs flex items-center px-4 py-2 mr-4 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
                     Publier une annonce
                   </a>
                 </Link>

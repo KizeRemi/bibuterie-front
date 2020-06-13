@@ -3,6 +3,7 @@ import React from 'react';
 import { Emoji } from 'emoji-mart';
 
 import WalkingDog from '../components/WalkingDog';
+import Link from 'next/link';
 
 const appWalking = () => {
   return (
@@ -11,23 +12,35 @@ const appWalking = () => {
         <title>La bibuterie - Toutes les races</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto py-16">
-        <div className="container flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold tracking-wider mb-4">Application Walking dog</h1>
-          <WalkingDog />
+        <div className="px-16 h-screen flex bg-gray-100">
+          <div className="flex-1 text-left px-12 py-24 m-2">
+            <h1 className="text-5xl my-2 font-bold">Application Walking Dog</h1>
+            <div className="text-xl mb-12 text-gray-700">
+              Téléchargez notre application afin de sociabiliser et promener votre chien avec des personnes de votre quartier ! <Emoji emoji={{ id: 'dog2' }} size={24} />
+            </div>
+            <ul className="text-lg text-gray-600 my-12"> 
+              <li>- Trouver facilement des personnes proches de vous</li>
+              <li>- Promenades et sociabilisations</li>
+              <li>- Photos </li>
+              <li>- Système de notations</li>
+            </ul>
+            <div className="flex">
+              <Link href="#">
+                <a className="gradient w-48 mr-8 justify-center text-white uppercase tracking-wider font-bold py-4 px-4 inline-flex items-center">
+                  <span>Apple Store</span>
+                </a>
+              </Link>
+              <Link href="#">
+                <a className="gradient w-48 justify-center text-white uppercase tracking-wider font-bold py-4 px-4 inline-flex items-center">
+                  <span>Google Store</span>
+                </a>
+              </Link>
+            </div>
+          </div>
+          <div className="flex-1 text-gray-700 text-center px-4 pt-5 m-2">
+            <WalkingDog />
+          </div>
         </div>
-        <p className="text-m text-gray-600 mt-3 mb-12">
-          Téléchargez sur Android et iOS notre application afin de sociabiliser votre chien
-          et promener votre chien avec des personnes de votre quartier ! <Emoji emoji={{ id: 'dog2' }} size={24} />
-
-          <ul>
-            <li>- Trouver des personnes proches de vous</li>
-            <li>- Promenades et sociabilisations</li>
-            <li>- Photos </li>
-            <li>- Système de notations</li>
-          </ul>
-        </p>
-      </div>
     </>
   )
 }

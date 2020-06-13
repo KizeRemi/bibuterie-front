@@ -6,8 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { Favorite } from 'grommet-icons';
 
 const GET_DOG_CLASSIFIEDS = gql`
-  query getDogClassifieds {
-    getDogClassifieds {
+  query getDogClassifieds($type: DogClassifiedType!, $limit: Int) {
+    getDogClassifieds(type: $type, limit: $limit) {
       name
       description
       classifiedUser {
@@ -22,7 +22,9 @@ const GET_DOG_CLASSIFIEDS = gql`
 `;
 
 const dogClassifiedsListing = () => {
-  const { loading, error, data: { getDogClassifieds } = {} } = useQuery(GET_DOG_CLASSIFIEDS);
+  const { loading, error, data: { getDogClassifieds } = {} } = useQuery(GET_DOG_CLASSIFIEDS, {
+    variables: { type: 'DONATION' },
+  });
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -41,7 +43,7 @@ const dogClassifiedsListing = () => {
               {getDogClassifieds.map(dogClassified => (
                 <div class="max-w-sm w-full lg:max-w-full lg:flex">
                   <div class="w-4/12 flex-none bg-cover text-center overflow-hidden" title="Woman holding a mug">
-                    <img className="h-full" src="https://loremflickr.com/500/300/dog" />
+                    <img className="h-full" src="/sample.jpg" />
                   </div>
                   <div class="border-r w-full border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white p-4 flex flex-col justify-between leading-normal">
                     <div class="mb-8">

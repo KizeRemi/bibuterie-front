@@ -10,7 +10,7 @@ const ClassifiedFormIdentification = ({ register, errors, dogBreeds }) => {
         <label className="block text-gray-700 text-m font-bold mb-2" for="name">
           Nom du chien
         </label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        <input className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ref={register({ required: 'Le nom de votre chien est obligatoire.' })}
           id="name"
           name="name"
@@ -26,9 +26,10 @@ const ClassifiedFormIdentification = ({ register, errors, dogBreeds }) => {
         <div className="relative">
           <select
             ref={register({ required: 'La race est obligatoire.' })}
-            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="block appearance-none w-full bg-gray-200 border text-gray-700 py-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="dogBreed"
             name="dogBreed"
+            placeholder="Sélectionner la race..."
           >
             {dogBreeds && dogBreeds.map(dogBreed => <option key={dogBreed.id} value={dogBreed.id}>{dogBreed.name}</option>)}
           </select>
@@ -41,7 +42,7 @@ const ClassifiedFormIdentification = ({ register, errors, dogBreeds }) => {
         <label className="block text-gray-700 text-m font-bold mb-2" for="birthDay">
           Date de naissance
         </label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        <input className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ref={register({ required: 'La date de naissance est obligatoire.' })}
           id="birthDate"
           name="birthDate"
@@ -59,7 +60,7 @@ const ClassifiedFormIdentification = ({ register, errors, dogBreeds }) => {
         </label>
       </div>
       <div className="col-span-1">
-        <label className="md:w-2/3 block text-gray-500 font-bold">
+        <label className="md:w-2/3 block text-gray-500 font-medium">
           <input ref={register} className="mr-2 leading-tight" type="checkbox" name="isDewormed" />
           <span className="text-sm">
             Le chien est vermifugé.
@@ -67,7 +68,7 @@ const ClassifiedFormIdentification = ({ register, errors, dogBreeds }) => {
         </label>
       </div>
       <div className="col-span-2">
-        <label className="md:w-2/3 block text-gray-500 font-bold">
+        <label className="md:w-2/3 block text-gray-500 font-medium">
           <input ref={register} className="mr-2 leading-tight" type="checkbox" name="isLof" />
           <span className="text-sm">
             Le chien appartient au LOF / LOOF.
@@ -78,7 +79,7 @@ const ClassifiedFormIdentification = ({ register, errors, dogBreeds }) => {
         <label className="block text-gray-700 text-m font-bold mb-2" for="id">
           Numéro d'identification
         </label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        <input className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ref={register({ required: `Veuillez spécifier le numero d'identification du chien.` })}
           id="numberId"
           name="numberId"

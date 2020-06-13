@@ -10,6 +10,7 @@ import NavBar from '../components/NavBar';
 
 import "react-step-progress-bar/styles.css";
 import '../css/tailwind.css';
+import '../css/index.css'
 
 Amplify.configure(authConfig);
 

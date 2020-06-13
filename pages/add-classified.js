@@ -1,14 +1,17 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useState }  from 'react';
 import Link from 'next/link'
+import { Currency } from 'grommet-icons';
 import { Emoji } from 'emoji-mart';
 
 const VALUES = [
-  { label: 'Donner une chien', value: 'DONATION', condition: 'Gratuite et illimitée.', url: '/add-classified-donation' },
-  { label: 'Vendre une chien', value: 'SELL', condition: 'Une seule par an si particulier.', url: '/add-classified-donation' },
+  { label: 'Donner un chiot', value: 'DONATION', condition: 'Gratuite et illimitée.', url: '/add-classified-donation' },
+  { label: 'Vendre un chien', value: 'SELL', condition: 'Une seule par an si particulier.', url: '/add-classified-donation' },
   { label: 'Vendre une portée', value: 'LITTER', condition: 'Un numero de SIREN est nécessaire.', url: '/add-classified-donation' },
 ]
 const addClassified = () => {
+  const [type, setType] = useState(null);
+
   return (
     <>
       <Head>
@@ -22,17 +25,19 @@ const addClassified = () => {
           Sachez que depuis le 7 octobre 2015, de nouvelles réglementations sont entrées en vigueur dans la vente de chien
           mais ne vous inquiétez pas, nous allons vous accompagner jusqu'à ce que votre annonce soit en ligne ! <Emoji emoji={{ id: 'slightly_smiling_face' }} size={20} />
         </p>
-        <div class="grid xl:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid xl:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-6">
           {VALUES.map(value => (
             <div>
-              <Link href={value.url}>
-                <a>
-                  <div class="flex mb-2 bg-blue-900 justify-end pb-2 pr-4 items-end h-32 text-3xl tracking-wide font-medium overflow-hidden border-2 hover:shadow-outline">
-                    <div class="text-white">
-                      {value.label}
-                    </div>
+              <Link href="/add-classified-donation">
+                <div
+                  onClick={() => setType(value.value)}
+                  className={`border-2 border-indigo-900 rounded ${type === value.value && 'border-indigo-900 bg-purple-100'} flex flex-col mb-2 bg-white-900 justify-center items-center h-32 uppercase tracking-wide font-medium hover:shadow-outline`}
+                >
+                  <Currency size="large" color="#9172f7" />
+                  <div className="text-indigo-900 mt-2 ">
+                    {value.label}
                   </div>
-                </a>
+                </div>
               </Link>
               <div className="text-m italic text-gray-600">{value.condition}</div>
             </div>

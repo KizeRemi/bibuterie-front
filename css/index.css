@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Nunito Sans";
+    src: url("NunitoSans-SemiBold.ttf");
+  }
+
+
+.gradient {
+  background: rgb(255,121,161);
+  background: linear-gradient(38deg, rgba(255,121,161,1) 0%, rgba(252,126,126,1) 100%); 
+}
+
+.gradient:hover {
+  background: rgb(255,87,137);
+  background: linear-gradient(38deg, rgba(255,87,137,1) 0%, rgba(255,112,112,1) 100%); 
+}

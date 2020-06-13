@@ -71,7 +71,7 @@ const STEPS = {
 const addClassifiedDonation = () => {
   const [addDogClassified, { data }] = useMutation(ADD_DOG_CLASSIFIED);
   const { loading, error, data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(0);
   const { register, triggerValidation, handleSubmit, errors, getValues } = useForm({
     defaultValues: {
       name: '',
@@ -85,10 +85,9 @@ const addClassifiedDonation = () => {
     }
   });
   const onSubmit = async (data) => {
-    await addDogClassified({ variables: { input: data } });
+    await addDogClassified({ variables: { input: { type: 'DONATION', data} } });
   };
 
-  console.log(getValues());
   return (
     <>
       <Head>
@@ -114,17 +113,19 @@ const addClassifiedDonation = () => {
           <div className={`grid ${step === 3 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
             Position
           </div>
-          <div className={`grid ${step === 5 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
-            Position
+          <div className={`grid ${step === 4 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
+            Recap
           </div>
         <div className="flex justify-between col-span-2 my-12">
-          <button
-            onClick={() => setStep(step - 1)}
-            type="button"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
-          >
-            <span>Revenir à la précédente étape</span>
-          </button>
+          {step > 0 && (
+            <button
+              onClick={() => setStep(step - 1)}
+              type="button"
+              className="bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center"
+            >
+              <span>Revenir à la précédente étape</span>
+            </button>
+          )}
           <button
             onClick={async () => {
               console.log(step);
@@ -136,7 +137,7 @@ const addClassifiedDonation = () => {
               };
             }}
             type={step === 4 ? "submit": "button"}
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+            className={`bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center`}
           >
             <span>{step === 4 ? 'Enregistrer' : 'Passer à la prochaine étape'}</span>
           </button>

@@ -34,7 +34,7 @@ export default function Home() {
         <title>La bibuterie - Accueil</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="px-16 flex bg-gray-100">
+      <div className="md:px-16 flex bg-gray-100">
         <div className="flex-1 text-left px-12 py-24 m-2">
           <h2 className="text-4xl my-2">Bienvenue sur la bibuterie !</h2>
           <div className="text-2xl mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
@@ -49,13 +49,13 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="flex-1 text-gray-700 text-center px-4 pt-5 m-2">
+        <div className="hidden md:flex flex-1 text-gray-700 text-center px-4 pt-5 m-2">
           <Dog />
         </div>
       </div>
       <div className="container mx-auto h-screen">
-        <h2 className="text-2xl my-6 font-bold tracking-wider">Dernières annonces de chiots</h2>
-        <div class="grid grid-cols-4 gap-8">
+        <h2 className="text-xl md:text-2xl my-6 font-bold tracking-wider">Dernières annonces de chiots</h2>
+        <div class="grid sm:grid-cols-1 md:grid-cols-4 gap-8">
           {loading ? (
             <div>loading</div>
           ) : (
@@ -77,7 +77,7 @@ export default function Home() {
                     <div class="text-gray-600 text-sm">
                       2 mois
                     </div>
-                    <div class="bg-blue-800 self-end w-32 transform translate-x-8 text-center text-white p-2">
+                    <div class="bg-blue-800 self-end w-32 transform md:translate-x-8 text-center text-white p-2">
                       DONATION
                     </div>
                   </div>
@@ -86,8 +86,8 @@ export default function Home() {
             </>
           )}
         </div>
-        <h1 className="text-2xl my-12 font-bold uppercase text-center tracking-wider">La bibuterie - Annonces de chiots et balades</h1>
-        <div className="flex justify-around h-32 uppercase text-sm text-pink-900 font-semibold items-center">
+        <h1 className="text-xl md:text-2xl my-12 font-bold uppercase text-center tracking-wider">La bibuterie - Annonces de chiots et balades</h1>
+        <div className="flex flex-col sm:flex-row justify-around uppercase text-sm text-pink-900 font-semibold items-center">
           <div className="flex items-center flex-col">
             <Compliance size="large" color="#a0aec0" />
             <div className="text-gray-500 m-5">Annonce de qualité</div>

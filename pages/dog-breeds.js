@@ -41,25 +41,27 @@ const dogBreeds = () => {
       </Head>
       <div className="container mx-auto py-16">
         <h2 className="text-2xl font-bold tracking-wider">Toutes les races de chiens</h2>
-        <p className="text-m text-gray-600 mt-3 mb-12">
+        <p className="text-m text-gray-600 mt-3 mb-12 sm:mb-2">
           Découvrez toutes les races de chiens, avec de nombreux détails sur leurs comportements, l'éducation, etc.
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 
           <Emoji emoji={{ id: 'dog2' }} size={24} />
         </p>
-        <div className="flex items-center justify-end my-4">
-          <div class="inline-block relative w-64 mx-4">
-            <input onChange={handleSubmit(submitSearch)} className="block appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              ref={register()}
-              id="search"
-              name="search"
-              type="text"
-              placeholder="Rechercher"
-            />
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <FormSearch size="medium" color="#666666" />
+        <div className="flex flex-col sm:flex-row items-center justify-end mb-4">
+          <div class="w-64 mx-4">
+            <label className="uppercase text-sm text-gray-600">Rechercher: </label>
+            <div className="relative">
+              <input onChange={handleSubmit(submitSearch)} className="block appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                ref={register()}
+                id="search"
+                name="search"
+                type="text"
+                placeholder="Rechercher"
+              />
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <FormSearch size="medium" color="#666666" />
+              </div>
             </div>
           </div>
-          <label className="mr-2 uppercase text-sm text-gray-600">Trier par: </label>
           <Select register={register} id="orderBy" name="orderBy">
             <option value="POPULARITY">Popularité</option>
             <option value="ALPHABETIC">Ordre alphabétique</option>

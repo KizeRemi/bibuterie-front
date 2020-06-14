@@ -1,9 +1,11 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
 import { Emoji } from 'emoji-mart';
 
 import WalkingDog from '../components/WalkingDog';
-import Link from 'next/link';
+import AppleStoreButton from '../components/AppleStoreButton';
+
 
 const appWalking = () => {
   return (
@@ -25,14 +27,12 @@ const appWalking = () => {
               <li>- Système de notations</li>
             </ul>
             <div className="flex">
-              <Link href="#">
-                <a className="gradient w-48 mr-8 justify-center text-white uppercase tracking-wider font-bold py-4 px-4 inline-flex items-center">
-                  <span>Apple Store</span>
-                </a>
+              <Link href="#" className="mr-8">
+                <AppleStoreButton />
               </Link>
               <Link href="#">
-                <a className="gradient w-48 justify-center text-white uppercase tracking-wider font-bold py-4 px-4 inline-flex items-center">
-                  <span>Google Store</span>
+                <a>
+                  <img src="/google-play-badge.png" className="h-16 w-42 mt-2" />
                 </a>
               </Link>
             </div>

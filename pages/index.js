@@ -35,11 +35,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="md:px-16 flex bg-gray-100">
-        <div className="flex-1 text-left px-12 py-24 m-2">
+        <div className="flex-1 text-left container py-24 m-2">
           <h2 className="text-4xl my-2">Bienvenue sur la bibuterie !</h2>
           <div className="text-2xl mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
           <Link href="/dog-classifieds-listing">
-            <a className="gradient text-white uppercase tracking-wider font-bold py-4 px-12 inline-flex items-center">
+            <a className="gradient w-full md:w-auto text-white uppercase tracking-wider font-bold py-4 px-12 inline-flex items-center">
               <span>Adopter un chiot</span>
             </a>
           </Link>
@@ -88,21 +88,21 @@ export default function Home() {
         </div>
         <h1 className="text-xl md:text-2xl my-12 font-bold uppercase text-center tracking-wider">La bibuterie - Annonces de chiots et balades</h1>
         <div className="flex flex-col sm:flex-row justify-around uppercase text-sm text-pink-900 font-semibold items-center">
-          <div className="flex items-center flex-col">
+          <div className=" mb-8 md:mb-0 flex items-center flex-col">
             <Compliance size="large" color="#a0aec0" />
-            <div className="text-gray-500 m-5">Annonce de qualité</div>
+            <div className="mt-1 md:mt-5 text-gray-500">Annonce de qualité</div>
           </div>
-          <div className="flex items-center text-bold flex-col">
+          <div className="mb-8 md:mb-0 flex items-center text-bold flex-col">
             <Validate size="large" color="#a0aec0" />
-            <div className="text-gray-500 m-5">Race adapté pour vous</div>
+            <div className="mt-1 md:mt-5 text-gray-500">Race adapté pour vous</div>
           </div>
-          <div className="flex items-center flex-col">
+          <div className="mb-8 md:mb-0 flex items-center flex-col">
             <Chat size="large" color="#a0aec0" />
-            <div className="text-gray-500 m-5">Messagerie interne</div>
+            <div className="mt-1 md:mt-5 text-gray-500">Messagerie interne</div>
           </div>
-          <div className="flex items-center flex-col">
+          <div className="mb-8 md:mb-0 flex items-center flex-col">
             <Group size="large" color="#a0aec0" />
-            <div className="text-gray-500 m-5">Promenades collectives</div>
+            <div className="mt-1 md:mt-5 text-gray-500">Promenades collectives</div>
           </div>
         </div>
       </div>

@@ -2,12 +2,14 @@ import Head from 'next/head';
 import React from 'react';
 import gql from 'graphql-tag';
 import { Emoji } from 'emoji-mart';
-import { useQuery } from '@apollo/react-hooks';
-import { Chat, Favorite } from 'grommet-icons';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { Chat, Favorite, FormSearch } from 'grommet-icons';
+import { useForm } from "react-hook-form";
+import Select from '../components/Select';
 
 const GET_DOG_BREEDS = gql`
-  query getDogBreeds {
-    getDogBreeds {
+  query getDogBreeds($search: String, $orderBy: BREED_ORDER_BY) {
+    getDogBreeds(search: $search, orderBy: $orderBy) {
       id
       name
       image
@@ -17,6 +19,18 @@ const GET_DOG_BREEDS = gql`
 
 const dogBreeds = () => {
   const { loading, error, data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
+  const [getFilteredDogBreeds, {
+    loading: filteredDogBreedsLoading, data: { getDogBreeds: filteredDogBreeds } = {}
+  }] = useLazyQuery(GET_DOG_BREEDS);
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      orderBy: 'ALPHABETIC',
+      search: null,
+    }
+  });
+  const submitSearch = values => getFilteredDogBreeds({ variables: values })
+  const dogBreeds = filteredDogBreeds || getDogBreeds;
+
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -32,8 +46,28 @@ const dogBreeds = () => {
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 
           <Emoji emoji={{ id: 'dog2' }} size={24} />
         </p>
+        <div className="flex items-center justify-end my-4">
+          <div class="inline-block relative w-64 mx-4">
+            <input onChange={handleSubmit(submitSearch)} className="block appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              ref={register()}
+              id="search"
+              name="search"
+              type="text"
+              placeholder="Rechercher"
+            />
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <FormSearch size="medium" color="#666666" />
+            </div>
+          </div>
+          <label className="mr-2 uppercase text-sm text-gray-600">Trier par: </label>
+          <Select register={register} id="orderBy" name="orderBy">
+            <option value="POPULARITY">Popularité</option>
+            <option value="ALPHABETIC">Ordre alphabétique</option>
+            <option value="MOST_COMMENTS">Les plus commentés</option>
+          </Select>
+        </div>
         <div class="grid xl:grid-cols-4 sm:grid-cols-1 md:grid-cols-3 gap-6">
-          {loading ? (
+          {(loading || filteredDogBreedsLoading) ? (
             <>
               <div class="transition h-56 bg-gray-200 overflow-hidden border-2"/>
               <div class="transition h-56 bg-gray-200 overflow-hidden border-2"/>
@@ -44,7 +78,7 @@ const dogBreeds = () => {
             </>
           ) : (
             <>
-            {getDogBreeds.map(dogBreed => (
+            {dogBreeds.map(dogBreed => (
               <div class="text-sm tracking-wider bg-white overflow-hidden border">
                 <img className="h-56 w-full" src={dogBreed.image} />
                 <div class="flex flex-col text-gray-800 px-2">

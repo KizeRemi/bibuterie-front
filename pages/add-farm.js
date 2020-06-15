@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { useForm } from "react-hook-form";
 import { useMutation } from '@apollo/react-hooks';
 import { Emoji } from 'emoji-mart';
+import HouseImage from '../components/House';
 
 const ADD_DOG_FARM = gql`
   mutation addDogFarm($input: DogFarmInput!) {
@@ -35,15 +36,17 @@ const AddDogFarm = () => {
       </Head>
       <div className="container mx-auto py-16">
         <h1 className="text-3xl font-bold tracking-wider mb-12">Ajouter votre élevage<Emoji emoji={{ id: 'house_with_garden' }} size={28} /></h1>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="w-full bg-gray-100" />
+        <div className="grid grid-cols-2 gap-20">
+          <div className="flex items-center">
+            <HouseImage />
+          </div>
           <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
             <div className="col-span-2">
               <h2 className="text-xl font-bold tracking-wider mb-6">Informations générales</h2>
               <label class="block text-gray-700 text-m font-bold mb-2" for="name">
                 Nom de votre élevage
               </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              <input class="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 ref={register}
                 id="name"
                 name="name"
@@ -55,7 +58,7 @@ const AddDogFarm = () => {
               <label class="block text-gray-700 text-m font-bold mb-2" for="address">
                 Adresse
               </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              <input class="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 ref={register}
                 id="address"
                 name="address"
@@ -67,7 +70,7 @@ const AddDogFarm = () => {
               <label class="block text-gray-700 text-m font-bold mb-2" for="town">
                 Ville
               </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              <input class="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 ref={register}
                 id="town"
                 name="town"
@@ -79,7 +82,7 @@ const AddDogFarm = () => {
               <label class="block text-gray-700 text-m font-bold mb-2" for="zipCode">
                 Code Postal
               </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              <input class="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 ref={register}
                 type="number"
                 id="zipCode"
@@ -104,11 +107,11 @@ const AddDogFarm = () => {
                 ref={register}
                 rows={6}
                 name="description"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <div className="col-span-2 my-6">
-            <button type="submit" class="bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <button type="submit" class="gradient text-white font-bold py-2 px-4 rounded inline-flex items-center">
               <span>Étape suivante</span>
             </button>
             </div>

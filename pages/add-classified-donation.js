@@ -70,7 +70,7 @@ const STEPS = {
 
 const addClassifiedDonation = () => {
   const [addDogClassified, { data }] = useMutation(ADD_DOG_CLASSIFIED);
-  const { loading, error, data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
+  const { data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
   const [step, setStep] = useState(0);
   const { register, triggerValidation, handleSubmit, errors, getValues } = useForm({
     defaultValues: {

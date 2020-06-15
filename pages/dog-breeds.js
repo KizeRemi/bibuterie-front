@@ -46,7 +46,7 @@ const dogBreeds = () => {
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 
           <Emoji emoji={{ id: 'dog2' }} size={24} />
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-end mb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-end mb-6">
           <div class="w-64 mx-4">
             <label className="uppercase text-sm text-gray-600">Rechercher: </label>
             <div className="relative">
@@ -62,7 +62,7 @@ const dogBreeds = () => {
               </div>
             </div>
           </div>
-          <Select register={register} id="orderBy" name="orderBy">
+          <Select register={register} id="orderBy" name="orderBy" label="Trier par:">
             <option value="POPULARITY">Popularité</option>
             <option value="ALPHABETIC">Ordre alphabétique</option>
             <option value="MOST_COMMENTS">Les plus commentés</option>

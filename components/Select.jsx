@@ -1,13 +1,12 @@
 import React from 'react';
 
-const Select = ({ register, children, ...props }) => {
+const Select = ({ register, children, label, ...props }) => {
   return (
-
-    <div className="w-64 my-4">
-      <label className="uppercase text-sm text-gray-600">Trier par: </label>
+    <div className="w-64">
+      <label className="uppercase text-sm text-gray-600">{label}</label>
       <div className="relative">
         <select
-          ref={register({ required: 'La race est obligatoire.' })}
+          ref={register()}
           className="block appearance-none w-full bg-gray-200 border text-gray-700 py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           {...props}
         >

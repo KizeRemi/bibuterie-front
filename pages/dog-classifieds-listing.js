@@ -2,12 +2,14 @@ import Head from 'next/head';
 import React from 'react';
 import gql from 'graphql-tag';
 import { Emoji } from 'emoji-mart';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { Favorite } from 'grommet-icons';
+import Select from '../components/Select';
+import { useForm } from "react-hook-form";
 
 const GET_DOG_CLASSIFIEDS = gql`
-  query getDogClassifieds($type: DogClassifiedType!, $limit: Int) {
-    getDogClassifieds(type: $type, limit: $limit) {
+  query getDogClassifieds($type: DogClassifiedType, $limit: Int, $dogBreedId: ID) {
+    getDogClassifieds(type: $type, limit: $limit, dogBreedId: $dogBreedId) {
       name
       description
       classifiedUser {
@@ -21,11 +23,32 @@ const GET_DOG_CLASSIFIEDS = gql`
   }
 `;
 
+const GET_DOG_BREEDS = gql`
+  query getDogBreeds {
+    getDogBreeds {
+      id
+      name
+    }
+  }
+`;
+
 const dogClassifiedsListing = () => {
-  const { loading, error, data: { getDogClassifieds } = {} } = useQuery(GET_DOG_CLASSIFIEDS, {
-    variables: { type: 'DONATION' },
+  const { data: { getDogBreeds: dogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
+  const [getFilteredDogClassifieds, {
+    loading: filteredDogClassifiedsLoading, data: { getDogClassifieds: filteredDogClassifieds } = {}
+  }] = useLazyQuery(GET_DOG_CLASSIFIEDS);
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      dogBreedId: '',
+      orderBy: 'MOST_RECENT',
+    }
   });
+  const { loading, error, data: { getDogClassifieds } = {} } = useQuery(GET_DOG_CLASSIFIEDS);
+
   if (error) return `Error! ${error.message}`;
+
+  const submitSearch = values => getFilteredDogClassifieds({ variables: values })
+  const dogClassifieds = filteredDogClassifieds || getDogClassifieds;
 
   return (
     <>
@@ -35,12 +58,39 @@ const dogClassifiedsListing = () => {
       </Head>
       <div className="container mx-auto py-16">
         <h2 className="text-2xl font-bold tracking-wider mb-12">Toutes les annonces de chiots</h2>
+        <div className="flex flex-col sm:flex-row items-center justify-end mb-6">
+          <div class="mx-4">
+            <Select
+              onChange={handleSubmit(submitSearch)}
+              register={register}
+              id="dogBreed"
+              name="dogBreedId"
+              label="Race: "
+            >
+              <option key="key" value="">Séléctionner une race...</option>
+              {dogBreeds && dogBreeds.map(dogBreed => (
+                  <option key={dogBreed.id} value={dogBreed.id}>{dogBreed.name}</option>)
+              )}
+            </Select>
+          </div>
+          <Select register={register} id="orderBy" name="orderBy" label="Trier par: ">
+            <option value="MOST_RECENT">Plus récent</option>
+            <option value="POPULARITY">Popularité</option>
+          </Select>
+        </div>
         <div class="grid grid-cols-1 gap-16">
-          {loading ? (
-            <div>loading</div>
+          {loading || filteredDogClassifiedsLoading ? (
+            <>
+              <div class="transition h-64 bg-gray-200 overflow-hidden border-2"/>
+              <div class="transition h-64 bg-gray-200 overflow-hidden border-2"/>
+              <div class="transition h-64 bg-gray-200 overflow-hidden border-2"/>
+              <div class="transition h-64 bg-gray-200 overflow-hidden border-2"/>
+              <div class="transition h-64 bg-gray-200 overflow-hidden border-2"/>
+              <div class="transition h-64 bg-gray-200 overflow-hidden border-2"/>
+            </>
           ) : (
             <>
-              {getDogClassifieds.map(dogClassified => (
+              {dogClassifieds.map(dogClassified => (
                 <div class="max-w-sm w-full lg:max-w-full lg:flex">
                   <div class="w-4/12 flex-none bg-cover text-center overflow-hidden" title="Woman holding a mug">
                     <img className="h-full" src="/sample.jpg" />

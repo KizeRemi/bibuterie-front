@@ -58,7 +58,7 @@ const dogClassifiedsListing = () => {
       </Head>
       <div className="container mx-auto py-16">
         <h2 className="text-2xl font-bold tracking-wider mb-12">Toutes les annonces de chiots</h2>
-        <div className="flex flex-col sm:flex-row items-center justify-end mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-end my-8">
           <div class="mx-4">
             <Select
               onChange={handleSubmit(submitSearch)}
@@ -111,7 +111,7 @@ const dogClassifiedsListing = () => {
                         <img class="w-10 h-10 rounded-full mr-4" src={dogClassified.classifiedUser.picture} alt="Avatar of Jonathan Reinink" />
                         <p class="text-gray-900 leading-none">{dogClassified.classifiedUser.name}</p>
                       </div>
-                      <div class="bg-blue-900 self-end w-32 transform translate-x-8 text-center text-white p-2">
+                      <div class="bg-blue-900 self-end w-32 transform md:translate-x-8 text-center text-white p-2">
                         DONATION
                       </div>
                     </div>

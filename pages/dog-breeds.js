@@ -46,7 +46,7 @@ const dogBreeds = () => {
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 
           <Emoji emoji={{ id: 'dog2' }} size={24} />
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-end mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-end my-8">
           <div class="w-64 mx-4">
             <label className="uppercase text-sm text-gray-600">Rechercher: </label>
             <div className="relative">

@@ -34,12 +34,12 @@ export default function Home() {
         <title>La bibuterie - Accueil</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="md:px-16 flex bg-gray-100">
-        <div className="flex-1 text-left container py-24 m-2">
-          <h2 className="text-4xl my-2">Bienvenue sur la bibuterie !</h2>
-          <div className="text-2xl mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
+      <div className="md:px-16 flex flex-col-reverse sm:flex-row bg-gray-100">
+        <div className="py-6 flex-1 text-left container lg:py-24 p-2">
+          <h2 className="text-2xl md:text-4xl my-2">Bienvenue sur la bibuterie !</h2>
+          <div className="text-xl md:text-2xl mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
           <Link href="/dog-classifieds-listing">
-            <a className="gradient w-full md:w-auto text-white uppercase tracking-wider font-bold py-4 px-12 inline-flex items-center">
+            <a className="gradient text-white uppercase tracking-wider font-bold py-4 px-12 inline-flex items-center">
               <span>Adopter un chiot</span>
             </a>
           </Link>
@@ -49,7 +49,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="hidden md:flex flex-1 text-gray-700 text-center px-4 pt-5 m-2">
+        <div className="flex flex-1 text-gray-700 text-center px-4 pt-5">
           <Dog />
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function Home() {
           ) : (
             <>
               {getDogClassifieds.map(dogClassified => (
-                <div class="max-w-sm border">
+                <div class="border">
                   <div class="flex items-center p-2">
                     <img class="w-8 h-8 rounded-full mr-4" src={dogClassified.classifiedUser.picture} alt="Avatar of Jonathan Reinink" />
                     <div class="text-sm flex-1">

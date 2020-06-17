@@ -96,53 +96,59 @@ const addClassifiedDonation = () => {
       </Head>
       <div className="container mx-auto py-16">
         <h1 className="text-3xl font-bold tracking-wider mb-2">Donation de chien <Emoji emoji={{ id: 'handshake' }} size={28} /></h1>
+        <div className="text-sm text-gray-600 uppercase">Pertinence de l'annonce</div>
         <ClassifiedProgressBar percent={(step / 4) * 100} />
-        <p className="text-sm text-gray-600 mb-6">
-          {STEPS[step].description}
+        <p className="text-sm text-gray-600 italic">
+          Plus votre score est élevée, plus votre annonce sera mise en avant.
         </p>
-        <form onSubmit={step === 4 ? handleSubmit(onSubmit) : null}>
-          <div className={`grid ${step === 0 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
-            <ClassifiedFormIdentification dogBreeds={getDogBreeds} register={register} errors={errors} />
+        <div class="flex mb-4">
+          <div class="w-1/3 p-2 bg-gray-400 text-center mr-4">
+            test
           </div>
-          <div className={`grid ${step === 1 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
-            <ClassifiedFormDescription register={register} />
-          </div>
-          <div className={`grid ${step === 2 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
-            <ClassifiedFormPictures register={register} />
-          </div>
-          <div className={`grid ${step === 3 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
-            Position
-          </div>
-          <div className={`grid ${step === 4 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
-            Recap
-          </div>
-        <div className="flex justify-between col-span-2 my-12">
-          {step > 0 && (
-            <button
-              onClick={() => setStep(step - 1)}
-              type="button"
-              className="bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center"
-            >
-              <span>Revenir à la précédente étape</span>
-            </button>
-          )}
-          <button
-            onClick={async () => {
-              console.log(step);
-              if (step === 4) {
-                return;
-              }
-              if (await triggerValidation(STEPS[step].fields)) {
-                setStep(step + 1);
-              };
-            }}
-            type={step === 4 ? "submit": "button"}
-            className={`bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center`}
-          >
-            <span>{step === 4 ? 'Enregistrer' : 'Passer à la prochaine étape'}</span>
-          </button>
+          <form className="w-2/3 p-2" onSubmit={step === 4 ? handleSubmit(onSubmit) : null}>
+            <div className={`grid ${step === 0 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
+              <ClassifiedFormIdentification dogBreeds={getDogBreeds} register={register} errors={errors} />
+            </div>
+            <div className={`grid ${step === 1 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
+              <ClassifiedFormDescription register={register} />
+            </div>
+            <div className={`grid ${step === 2 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
+              <ClassifiedFormPictures register={register} />
+            </div>
+            <div className={`grid ${step === 3 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
+              Position
+            </div>
+            <div className={`grid ${step === 4 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
+              Recap
+            </div>
+            <div className="flex justify-between col-span-2 my-12">
+              {step > 0 && (
+                <button
+                  onClick={() => setStep(step - 1)}
+                  type="button"
+                  className="bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center"
+                >
+                  <span>Revenir à la précédente étape</span>
+                </button>
+              )}
+              <button
+                onClick={async () => {
+                  console.log(step);
+                  if (step === 4) {
+                    return;
+                  }
+                  if (await triggerValidation(STEPS[step].fields)) {
+                    setStep(step + 1);
+                  };
+                }}
+                type={step === 4 ? "submit": "button"}
+                className={`bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center`}
+              >
+                <span>{step === 4 ? 'Enregistrer' : 'Passer à la prochaine étape'}</span>
+              </button>
+            </div>
+          </form>
         </div>
-        </form>
       </div>
     </>
   )

@@ -53,7 +53,7 @@ export default function Home() {
           <Dog />
         </div>
       </div>
-      <div className="container mx-auto h-screen">
+      <div className="container px-2 lg:mx-auto h-screen">
         <h2 className="text-xl md:text-2xl my-6 font-bold tracking-wider">Dernières annonces de chiots</h2>
         <div class="grid sm:grid-cols-1 md:grid-cols-4 gap-8">
           {loading ? (
@@ -87,7 +87,7 @@ export default function Home() {
           )}
         </div>
         <h1 className="text-xl md:text-2xl my-12 font-bold uppercase text-center tracking-wider">La bibuterie - Annonces de chiots et balades</h1>
-        <div className="flex flex-col sm:flex-row justify-around uppercase text-sm text-pink-900 font-semibold items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 text-center uppercase text-xs md:text-sm text-pink-900 font-semibold gap-4">
           <div className=" mb-8 md:mb-0 flex items-center flex-col">
             <Compliance size="large" color="#a0aec0" />
             <div className="mt-1 md:mt-5 text-gray-500">Annonce de qualité</div>

@@ -186,6 +186,11 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
           >
             Mes annonces favorites
           </a>
+          <Link href="/add-classified">
+            <a class="gradient inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
+              Publier une annonce
+            </a>
+          </Link>
           <Link href="/add-farm">
             <a class="bg-gray-800 inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase">
               Je suis un professionel

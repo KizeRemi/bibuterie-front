@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
+import { FacebookOption, Google } from 'grommet-icons';
 
 export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onSignOut }) => {
   const [displayNav, setDisplayNav] = useState(false);
-  const [displayNavProfile, setDisplayProfileNav] = useState(true);
+  const [displayNavProfile, setDisplayProfileNav] = useState(false);
   const [currentMenu, setCurrentMenu] = useState(null);
 
   const showMenu = (key) => () => {
@@ -121,24 +122,24 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
               )}
             </>
           ) : (
-            <div className="hidden lg:block w-full block lg:flex relative lg:w-auto">
+            <div className="block lg:flex relative lg:w-auto">
               <button
                 onClick={onClickGoogle}
-                class="inline-block text-sm px-4 py-2 mr-4 leading-none rounded-full font-bold text-white bg-red-600 mt-4 lg:mt-0"
+                class="inline-block text-sm px-1 py-1 mx-1 mr-2 leading-none rounded-full text-white bg-red-600 lg:mt-0"
               >
-                Google
+                <Google size="medium" color="#ffffff" />
               </button>
               <button
                 onClick={onClickFacebook}
-                class="inline-block text-sm px-4 py-2 leading-none rounded-full text-white bg-blue-600 mt-4 lg:mt-0"
+                class="inline-block text-sm px-1 py-1 leading-none rounded-full text-white bg-blue-600 lg:mt-0"
               >
-                Facebook
+                <FacebookOption size="medium" color="#ffffff" />
               </button>
             </div>
           )}
         </>
       </nav>
-      {displayNav && !displayNavProfile && (
+      {displayNav && (
         <nav className="block lg:hidden flex items-center justify-between px-6 flex-wrap border-b border-gray-300 bg-white-300">
           <Link href="/dog-classifieds-listing">
             <a className="flex items-center h-12 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900">
@@ -165,7 +166,7 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
           </Link>
         </nav>
       )}
-      {!displayNav && displayNavProfile && (
+      {displayNavProfile && (
         <nav className="block lg:hidden flex items-center justify-between px-6 flex-wrap border-b border-gray-300 bg-white-300">
           <a
             href="#"

@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { Emoji } from 'emoji-mart';
-
+import { FormNext, FormPrevious } from 'grommet-icons';
 import ClassifiedFormIdentification from '../components/ClassifiedFormIdentification';
 import ClassifiedFormDescription from '../components/ClassifiedFormDescription';
 import ClassifiedProgressBar from '../components/ClassifiedProgressBar';
@@ -30,7 +30,7 @@ const STEPS = {
     description: <span>En quelques étapes seulement, nous allons pouvoir publier votre donation. 
     Tout d'abord, nous allons nous occuper de la partie administrative afin d'identifier légalement votre chien, cette étape est obligatoire
     mais rapide <Emoji emoji={{ id: 'wink' }} size={18} /> !</span>,
-    fields: ['name', 'birthDate', 'isVaccinated', 'dogBreed', 'isLof', 'isDewormed', 'numberId']
+    fields: ['name', 'birthDate', 'isVaccinated', 'dogBreed', 'isLof', 'isDewormed', 'numberId', 'gender']
   },
   1: {
     description:
@@ -69,7 +69,7 @@ const STEPS = {
 };
 
 const addClassifiedDonation = () => {
-  const [addDogClassified, { data }] = useMutation(ADD_DOG_CLASSIFIED);
+  const [addDogClassified] = useMutation(ADD_DOG_CLASSIFIED);
   const { data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
   const [step, setStep] = useState(0);
   const { register, triggerValidation, handleSubmit, errors, getValues } = useForm({
@@ -82,10 +82,11 @@ const addClassifiedDonation = () => {
       numberId: '',
       dogBreed: null,
       description: '',
+      gender: null,
     }
   });
   const onSubmit = async (data) => {
-    await addDogClassified({ variables: { input: { type: 'DONATION', data} } });
+    await addDogClassified({ variables: { input: { type: 'DONATION', ...data } } });
   };
 
   return (
@@ -94,18 +95,16 @@ const addClassifiedDonation = () => {
         <title>La bibuterie - Publier une donation</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto py-16">
-        <h1 className="text-3xl font-bold tracking-wider mb-2">Donation de chien <Emoji emoji={{ id: 'handshake' }} size={28} /></h1>
-        <div className="text-sm text-gray-600 uppercase">Pertinence de l'annonce</div>
+      <div className="container px-2 lg:px-0 mx-auto py-16">
+        <h1 className="text-3xl font-bold tracking-wider mb-2">Donation de chiot</h1>
+        <div className="text-lg text-gray-600 uppercase text-center mt-8">Pertinence de votre annonce</div>
         <ClassifiedProgressBar percent={(step / 4) * 100} />
-        <p className="text-sm text-gray-600 italic">
-          Plus votre score est élevée, plus votre annonce sera mise en avant.
+        <p className="text-sm text-gray-600 text-center italic">
+          Plus votre score est élevée, plus votre annonce sera mise en avant et plus les personnes auront des informations sur votre chiot.
         </p>
-        <div class="flex mb-4">
-          <div class="w-1/3 p-2 bg-gray-400 text-center mr-4">
-            test
-          </div>
-          <form className="w-2/3 p-2" onSubmit={step === 4 ? handleSubmit(onSubmit) : null}>
+        <div class="flex flex-col lg:flex-row my-12">
+          <div class="gradient w-full lg:w-1/3 p-2 border text-center mr-12" />
+          <form className="w-full lg:w-2/3 h-full mt-6 lg:mt-0" onSubmit={step === 4 ? handleSubmit(onSubmit) : null}>
             <div className={`grid ${step === 0 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
               <ClassifiedFormIdentification dogBreeds={getDogBreeds} register={register} errors={errors} />
             </div>
@@ -121,19 +120,19 @@ const addClassifiedDonation = () => {
             <div className={`grid ${step === 4 ? 'block': 'hidden' } grid-cols-2 gap-4`}>
               Recap
             </div>
-            <div className="flex justify-between col-span-2 my-12">
+            <div className="flex justify-between col-span-2 mt-6 lg:mt-12">
               {step > 0 && (
                 <button
                   onClick={() => setStep(step - 1)}
                   type="button"
-                  className="bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center"
+                  className="border border-gray-800 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
                 >
-                  <span>Revenir à la précédente étape</span>
+                  <FormPrevious color="#2d3748" />
+                  <span className="hidden lg:block">Revenir à la précédente étape</span>
                 </button>
               )}
               <button
                 onClick={async () => {
-                  console.log(step);
                   if (step === 4) {
                     return;
                   }
@@ -142,9 +141,10 @@ const addClassifiedDonation = () => {
                   };
                 }}
                 type={step === 4 ? "submit": "button"}
-                className={`bg-pink-900 text-white font-bold py-2 px-4 inline-flex items-center`}
+                className="gradient-2 text-white font-bold py-2 px-4 rounded inline-flex items-center"
               >
-                <span>{step === 4 ? 'Enregistrer' : 'Passer à la prochaine étape'}</span>
+                <span className="hidden lg:block">{step === 4 ? 'Enregistrer' : 'Passer à la prochaine étape'}</span>
+                <FormNext color="#FFFFFF" />
               </button>
             </div>
           </form>

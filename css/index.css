@@ -13,3 +13,13 @@
   background: rgb(255,87,137);
   background: linear-gradient(38deg, rgba(255,87,137,1) 0%, rgba(255,112,112,1) 100%); 
 }
+
+.gradient-2 {
+  background: rgba(57, 106, 252);
+  background: linear-gradient(38deg, rgba(57, 106, 252, 1) 0%, rgba(41, 72, 255, 1) 100%); 
+}
+
+.gradient:hover {
+  background: rgb(255,87,137);
+  background: linear-gradient(38deg, rgba(255,87,137,1) 0%, rgba(255,112,112,1) 100%); 
+}

@@ -29,15 +29,17 @@ const addClassified = () => {
               </h3>
               <div></div>
               <ul className="list-inside sm:list-inside text-left m-3">
-                <li className="my-4">- Annonce gratuite</li>
-                <li className="my-4">- Illimité</li>
-                <li className="my-4">- Jusqu'à 10 photos</li>
+                <li className="my-4 lg:my-1">- Annonce gratuite</li>
+                <li className="my-4 lg:my-1">- Illimité</li>
+                <li className="my-4 lg:my-1">- Jusqu'à 10 photos</li>
               </ul>
             </div>
             <div className="flex justify-center my-12"><GiveImage /></div>
-            <button class="gradient w-full text-center inline-block text-white px-4 py-4 leading-none rounded-full font-bold uppercase">
-              Donner un chiot
-            </button>
+            <Link href="/add-classified-donation">
+              <a class="gradient w-full text-center inline-block text-white px-4 py-4 leading-none rounded-full font-bold uppercase">
+                Donner un chiot
+              </a>
+            </Link>
           </div>
           <div class="text-base my-2 lg:my-6 px-2 py-6 tracking-wider bg-white overflow-hidden border text-center">
             <div class="w-full text-gray-700 px-4">
@@ -46,10 +48,10 @@ const addClassified = () => {
               </h3>
               <div></div>
               <ul className="list-inside sm:list-inside text-left m-3">
-                <li className="my-4">- Annonce gratuite</li>
-                <li className="my-4">- Numéro de siren nécessaire</li>
-                <li className="my-4">- Options disponibles</li>
-                <li className="my-4">- Jusqu'à 30 photos</li>
+                <li className="my-4 lg:my-1">- Annonce gratuite</li>
+                <li className="my-4 lg:my-1">- Numéro de siren nécessaire</li>
+                <li className="my-4 lg:my-1">- Options disponibles</li>
+                <li className="my-4 lg:my-1">- Jusqu'à 30 photos</li>
               </ul>
             </div>
             <div className="flex justify-center my-12"><GiveImage /></div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Select = ({ register, children, label, ...props }) => {
   return (
-    <div className="w-64">
+    <div className="w-full lg:w-64">
       <label className="uppercase text-sm text-gray-600">{label}</label>
       <div className="relative">
         <select

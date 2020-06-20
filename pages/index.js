@@ -9,7 +9,9 @@ import Dog from '../components/Dog';
 const GET_DOG_CLASSIFIEDS = gql`
   query getDogClassifieds($type: DogClassifiedType!, $limit: Int) {
     getDogClassifieds(type: $type, limit: $limit) {
+      id
       name
+      gender
       description
       classifiedUser {
         name
@@ -55,29 +57,29 @@ export default function Home() {
       </div>
       <div className="container px-2 lg:mx-auto h-screen">
         <h2 className="text-xl md:text-2xl my-6 font-bold tracking-wider">Dernières annonces de chiots</h2>
-        <div class="grid sm:grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-8">
           {loading ? (
             <div>loading</div>
           ) : (
             <>
               {getDogClassifieds.map(dogClassified => (
-                <div class="border">
-                  <div class="flex items-center p-2">
-                    <img class="w-8 h-8 rounded-full mr-4" src={dogClassified.classifiedUser.picture} alt="Avatar of Jonathan Reinink" />
-                    <div class="text-sm flex-1">
-                      <p class="text-gray-900 leading-none">{dogClassified.classifiedUser.name}</p>
+                <div key={dogClassified.id} className="border">
+                  <div className="flex items-center p-2">
+                    <img className="w-8 h-8 rounded-full mr-4" src={dogClassified.classifiedUser.picture} alt="Avatar of Jonathan Reinink" />
+                    <div className="text-sm flex-1">
+                      <p className="text-gray-900 leading-none">{dogClassified.classifiedUser.name}</p>
                     </div>
                   </div>
                   <img className="w-full" src="/dog-min.jpg" />
-                  <div class="w-full bg-white p-4 flex flex-col justify-between leading-normal">
-                    <div class="flex flex-row justify-between text-gray-800 uppercase font-bold text-base mb-2">
+                  <div className="w-full bg-white p-4 flex flex-col justify-between leading-normal">
+                    <div className="flex flex-row justify-between text-gray-800 uppercase font-bold text-base mb-2">
                       <span>{dogClassified.name}, {dogClassified.dogBreed.name}</span>
                       <Favorite size="medium" />
                     </div>
-                    <div class="text-gray-600 text-sm">
-                      2 mois
+                    <div className="text-gray-600 text-sm">
+                      {`${dogClassified.gender} - 2 mois`}
                     </div>
-                    <div class="bg-blue-800 self-end w-32 transform md:translate-x-8 text-center text-white p-2">
+                    <div className="bg-blue-800 self-end w-32 transform md:translate-x-8 text-center text-white p-2">
                       DONATION
                     </div>
                   </div>

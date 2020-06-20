@@ -28,17 +28,17 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
           </svg>
         </button>
-        <div class="mx-0 md:mx-6 flex-1 md:flex-none flex justify-center items-center flex-shrink-0 text-gray-700">
-          <Link href="/"><a class="text-xl font-bold">La bibuterie</a></Link>
+        <div className="mx-0 md:mx-6 flex-1 md:flex-none flex justify-center items-center flex-shrink-0 text-gray-700">
+          <Link href="/"><a className="text-xl font-bold">La bibuterie</a></Link>
         </div>
         <>
-          <div class="hidden lg:flex w-full h-full flex-grow relative lg:w-auto">
-            <div class="block lg:hidden h-auto">
-              <button class="flex items-center px-3 py-2 border rounded text-gray-900 border-teal-400">
-                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">Menu<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          <div className="hidden lg:flex w-full h-full flex-grow relative lg:w-auto">
+            <div className="block lg:hidden h-auto">
+              <button className="flex items-center px-3 py-2 border rounded text-gray-900 border-teal-400">
+                <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">Menu<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
               </button>
             </div>
-            <div class="flex-col relative text-sm items-center lg:flex-grow h-full">
+            <div className="flex-col relative text-sm items-center lg:flex-grow h-full">
               <Link href="/dog-classifieds-listing">
                 <button
                   className={`h-full block hover:bg-gray-200 tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900 px-4 mr-4`}
@@ -58,8 +58,15 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
                 </Link>
                 <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Quelle race pour mon quotidien ?</a>
               </div>
+              <Link href="/dog-classifieds-listing">
+                <button
+                  className={`h-full block hover:bg-gray-200 tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900 px-4 mr-4`}
+                >
+                  Guides
+                </button>
+              </Link>
               <Link href="/app-walking">
-                <button class="h-full font-semibold tracking-normal overflow-hidden block px-4 lg:inline-block lg:mt-0 text-gray-900 mr-4">
+                <button className="h-full font-semibold tracking-normal overflow-hidden block px-4 lg:inline-block lg:mt-0 text-gray-900 mr-4">
                   Balades
                 </button>
               </Link>
@@ -69,7 +76,7 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
             <>
               <div className="hidden lg:block w-full block lg:flex relative lg:w-auto">
                 <Link href="/add-classified">
-                  <a class="gradient inline-block text-white text-xs flex items-center px-4 py-2 mr-4 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
+                  <a className="gradient inline-block text-white text-xs flex items-center px-4 py-2 mr-4 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
                     Publier une annonce
                   </a>
                 </Link>
@@ -107,7 +114,7 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
                       Mes annonces favorites
                     </a>
                     <Link href="/add-farm">
-                      <a class="bg-gray-800 inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase">
+                      <a className="bg-gray-800 inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase">
                         Je suis un professionel
                       </a>
                     </Link>
@@ -125,13 +132,13 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
             <div className="block lg:flex relative lg:w-auto">
               <button
                 onClick={onClickGoogle}
-                class="inline-block text-sm px-1 py-1 mx-1 mr-2 leading-none rounded-full text-white bg-red-600 lg:mt-0"
+                className="inline-block text-sm px-1 py-1 mx-1 mr-2 leading-none rounded-full text-white bg-red-600 lg:mt-0"
               >
                 <Google size="medium" color="#ffffff" />
               </button>
               <button
                 onClick={onClickFacebook}
-                class="inline-block text-sm px-1 py-1 leading-none rounded-full text-white bg-blue-600 lg:mt-0"
+                className="inline-block text-sm px-1 py-1 leading-none rounded-full text-white bg-blue-600 lg:mt-0"
               >
                 <FacebookOption size="medium" color="#ffffff" />
               </button>
@@ -187,12 +194,12 @@ export const NavBar = ({ loading, user = {}, onClickFacebook, onClickGoogle, onS
             Mes annonces favorites
           </a>
           <Link href="/add-classified">
-            <a class="gradient inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
+            <a className="gradient inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
               Publier une annonce
             </a>
           </Link>
           <Link href="/add-farm">
-            <a class="bg-gray-800 inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase">
+            <a className="bg-gray-800 inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase">
               Je suis un professionel
             </a>
           </Link>

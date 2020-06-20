@@ -72,7 +72,7 @@ const addClassifiedDonation = () => {
   const [addDogClassified] = useMutation(ADD_DOG_CLASSIFIED);
   const { data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
   const [step, setStep] = useState(0);
-  const { register, triggerValidation, handleSubmit, errors, getValues } = useForm({
+  const { register, triggerValidation, handleSubmit, errors } = useForm({
     defaultValues: {
       name: '',
       birthDate: new Date().toISOString(),

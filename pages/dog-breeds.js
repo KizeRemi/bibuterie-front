@@ -39,15 +39,15 @@ const dogBreeds = () => {
         <title>La bibuterie - Toutes les races</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto py-16">
-        <h2 className="text-2xl font-bold tracking-wider">Toutes les races de chiens</h2>
+      <div className="container lg:mx-auto py-2 lg:py-16">
+        <h2 className="text-2xl font-bold tracking-wider mb-4 lg:mb-12">Toutes les races de chiens</h2>
         <p className="text-m text-gray-600 mt-3 mb-12 sm:mb-2">
           Découvrez toutes les races de chiens, avec de nombreux détails sur leurs comportements, l'éducation, etc.
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 
           <Emoji emoji={{ id: 'dog2' }} size={24} />
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-end my-8">
-          <div class="w-64 mx-4">
+        <div className="flex px-2 lg:px-0 flex-col sm:flex-row justify-end my-8">
+          <div class="w-full lg:w-64 mx-0 lg:mx-4">
             <label className="uppercase text-sm text-gray-600">Rechercher: </label>
             <div className="relative">
               <input onChange={handleSubmit(submitSearch)} className="block appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

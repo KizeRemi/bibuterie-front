@@ -1,30 +1,19 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Compliance, Chat, Validate, Group, Favorite } from 'grommet-icons';
-import Dog from '../components/Dog';
 
-const GET_DOG_CLASSIFIEDS = gql`
-  query getDogClassifieds($type: DogClassifiedType!, $limit: Int) {
-    getDogClassifieds(type: $type, limit: $limit) {
-      id
-      name
-      gender
-      description
-      classifiedUser {
-        name
-        picture
-      }
-      dogBreed {
-        name
-      }
-    }
-  }
-`;
+import Dog from '../components/Dog';
+import { UserContext } from '../providers/UserProvider';
+import { GET_DOG_CLASSIFIEDS } from '../graphql/dogClassifieds';
+import { GET_DOG_CLASSIFIEDS_LIKED, TOGGLE_DOG_CLASSIFIED_LIKE } from '../graphql/dogClassifiedsLike';
 
 export default function Home() {
+  const { dogClassifiedsLiked } = useContext(UserContext);
+  const [toggleDogClassifiedLike] = useMutation(TOGGLE_DOG_CLASSIFIED_LIKE, {
+    refetchQueries: [{ query: GET_DOG_CLASSIFIEDS_LIKED }]
+  });
   const { loading, error, data: { getDogClassifieds } = {} } = useQuery(GET_DOG_CLASSIFIEDS, {
     variables: { type: "DONATION", limit: 4 },
   });
@@ -38,10 +27,10 @@ export default function Home() {
       </Head>
       <div className="md:px-16 flex flex-col-reverse sm:flex-row bg-gray-100">
         <div className="py-6 flex-1 text-left container lg:py-24 p-2">
-          <h2 className="text-2xl md:text-4xl my-2">Bienvenue sur la bibuterie !</h2>
-          <div className="text-xl md:text-2xl mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
+          <h2 className="text-3xl md:text-4xl font-semibold leading-tight my-2">Bienvenue sur la bibuterie !</h2>
+          <div className="leading-tight md:text-2xl mb-4 lg:mb-12">Prêts à avoir à avoir un nouveau membre dans la famille?</div>
           <Link href="/dog-classifieds-listing">
-            <a className="gradient text-white uppercase tracking-wider font-bold py-4 px-12 inline-flex items-center">
+            <a className="gradient text-white uppercase tracking-wider font-bold py-3 px-8 lg:py-4 lg:px-12 inline-flex items-center">
               <span>Adopter un chiot</span>
             </a>
           </Link>
@@ -55,8 +44,8 @@ export default function Home() {
           <Dog />
         </div>
       </div>
-      <div className="container px-2 lg:mx-auto h-screen">
-        <h2 className="text-xl md:text-2xl my-6 font-bold tracking-wider">Dernières annonces de chiots</h2>
+      <div className="container my-8 px-2 lg:mx-auto h-screen">
+        <h2 className="text-2xl font-bold mb-1 tracking-wider">Nos dernières annonces</h2>
         <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-8">
           {loading ? (
             <div>loading</div>
@@ -74,7 +63,10 @@ export default function Home() {
                   <div className="w-full bg-white p-4 flex flex-col justify-between leading-normal">
                     <div className="flex flex-row justify-between text-gray-800 uppercase font-bold text-base mb-2">
                       <span>{dogClassified.name}, {dogClassified.dogBreed.name}</span>
-                      <Favorite size="medium" />
+                      <Favorite
+                        color={dogClassifiedsLiked.includes(dogClassified.id) && '#e53e3e'}
+                        onClick={() => toggleDogClassifiedLike({ variables: { dogClassifiedId: dogClassified.id } })}
+                      />
                     </div>
                     <div className="text-gray-600 text-sm">
                       {`${dogClassified.gender} - 2 mois`}

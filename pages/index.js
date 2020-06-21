@@ -7,12 +7,17 @@ import { Compliance, Chat, Validate, Group, Favorite } from 'grommet-icons';
 import Dog from '../components/Dog';
 import { UserContext } from '../providers/UserProvider';
 import { GET_DOG_CLASSIFIEDS } from '../graphql/dogClassifieds';
-import { GET_DOG_CLASSIFIEDS_LIKED, TOGGLE_DOG_CLASSIFIED_LIKE } from '../graphql/dogClassifiedsLike';
+import { GET_USER_LIKED, TOGGLE_DOG_CLASSIFIED_LIKE } from '../graphql/dogClassifiedsLike';
+
+const GENDER_MAPPING = {
+  MALE: 'Mâle',
+  FEMALE: 'Femelle',
+};
 
 export default function Home() {
   const { dogClassifiedsLiked } = useContext(UserContext);
   const [toggleDogClassifiedLike] = useMutation(TOGGLE_DOG_CLASSIFIED_LIKE, {
-    refetchQueries: [{ query: GET_DOG_CLASSIFIEDS_LIKED }]
+    refetchQueries: [{ query: GET_USER_LIKED }]
   });
   const { loading, error, data: { getDogClassifieds } = {} } = useQuery(GET_DOG_CLASSIFIEDS, {
     variables: { type: "DONATION", limit: 4 },
@@ -64,12 +69,13 @@ export default function Home() {
                     <div className="flex flex-row justify-between text-gray-800 uppercase font-bold text-base mb-2">
                       <span>{dogClassified.name}, {dogClassified.dogBreed.name}</span>
                       <Favorite
+                        className="cursor-pointer"
                         color={dogClassifiedsLiked.includes(dogClassified.id) && '#e53e3e'}
                         onClick={() => toggleDogClassifiedLike({ variables: { dogClassifiedId: dogClassified.id } })}
                       />
                     </div>
                     <div className="text-gray-600 text-sm">
-                      {`${dogClassified.gender} - 2 mois`}
+                      {`${GENDER_MAPPING[dogClassified.gender]} - 2 mois`}
                     </div>
                     <div className="bg-blue-800 self-end w-32 transform md:translate-x-8 text-center text-white p-2">
                       DONATION

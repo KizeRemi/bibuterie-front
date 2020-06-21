@@ -5,6 +5,7 @@ export const GET_DOG_CLASSIFIEDS = gql`
     getDogClassifieds(type: $type, limit: $limit, dogBreedId: $dogBreedId, gender: $gender) {
       id
       name
+      gender
       description
       classifiedUser {
         name

@@ -6,10 +6,9 @@ import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { Favorite } from 'grommet-icons';
 
 import Select from '../components/Select';
-import { GET_DOG_CLASSIFIEDS_LIKED, TOGGLE_DOG_CLASSIFIED_LIKE } from '../graphql/dogClassifiedsLike';
+import { GET_USER_LIKED, TOGGLE_DOG_CLASSIFIED_LIKE } from '../graphql/dogClassifiedsLike';
 import { GET_DOG_CLASSIFIEDS } from '../graphql/dogClassifieds';
 import { UserContext } from '../providers/UserProvider';
-
 
 const GET_DOG_BREEDS = gql`
   query getDogBreeds {
@@ -24,7 +23,7 @@ const dogClassifiedsListing = () => {
   const { dogClassifiedsLiked } = useContext(UserContext);
   const { data: { getDogBreeds: dogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
   const [toggleDogClassifiedLike] = useMutation(TOGGLE_DOG_CLASSIFIED_LIKE, {
-    refetchQueries: [{ query: GET_DOG_CLASSIFIEDS_LIKED }]
+    refetchQueries: [{ query: GET_USER_LIKED }]
   });
   const [getFilteredDogClassifieds, {
     loading: filteredDogClassifiedsLoading, data: { getDogClassifieds: filteredDogClassifieds } = {}
@@ -50,8 +49,8 @@ const dogClassifiedsListing = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container lg:mx-auto py-2 lg:py-16">
-        <h2 className="text-2xl font-bold tracking-wider mb-4 lg:mb-12">Toutes nos annonces de chiots</h2>
-        <div className="flex px-2 lg:px-0 flex-col sm:flex-row items-center justify-end my-8">
+        <h2 className="px-2 lg:px-0 text-2xl leading-tight font-bold tracking-wider">Toutes nos annonces de chiots</h2>
+        <div className="flex px-2 lg:px-0 flex-col sm:flex-row items-center justify-end mt-2 lg:mt-8 mb-8">
           <div className="mx-4 w-full lg:w-64">
             <Select
               onChange={handleSubmit(submitSearch)}
@@ -108,6 +107,7 @@ const dogClassifiedsListing = () => {
                       <div className="text-sm text-gray-600 flex items-center flex flex-row justify-between">
                         Donation par un Particulier
                         <Favorite
+                          className="cursor-pointer"
                           color={dogClassifiedsLiked.includes(dogClassified.id) && '#e53e3e'}
                           onClick={() => toggleDogClassifiedLike({ variables: { dogClassifiedId: dogClassified.id } })}
                         />

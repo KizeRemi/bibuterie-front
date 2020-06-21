@@ -1,9 +1,12 @@
 import gql from 'graphql-tag';
 
-export const GET_DOG_CLASSIFIEDS_LIKED = gql`
-  query getUserDogClassifiedsLiked {
+export const GET_USER_LIKED = gql`
+  query getUserLiked {
     getUserDogClassifiedsLiked {
       dogClassifiedId
+    }
+    getUserDogBreedsLiked {
+      dogBreedId
     }
   }
 `;

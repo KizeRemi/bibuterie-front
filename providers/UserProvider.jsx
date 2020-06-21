@@ -3,14 +3,16 @@ import React, { createContext, useState, useEffect } from 'react';
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import { useLazyQuery } from '@apollo/react-hooks';
 
-import { GET_DOG_CLASSIFIEDS_LIKED } from '../graphql/dogClassifiedsLike';
+import { GET_USER_LIKED } from '../graphql/dogClassifiedsLike';
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [getUserDogClassifiedsLiked, { data: { getUserDogClassifiedsLiked: dogClassifiedsLiked = [] } = {}
-  }] = useLazyQuery(GET_DOG_CLASSIFIEDS_LIKED);
+  const [getUserDogClassifiedsLiked, { data: {
+    getUserDogClassifiedsLiked: dogClassifiedsLiked = [],
+    getUserDogBreedsLiked: dogBreedsLiked = [],
+  } = {} }] = useLazyQuery(GET_USER_LIKED);
 
   const signIn = (provider) => async () => {
     await Auth.federatedSignIn({ provider });
@@ -48,7 +50,8 @@ const UserProvider = ({ children }) => {
       user,
       signOut,
       signIn,
-      dogClassifiedsLiked: dogClassifiedsLiked.map(dogClassifiedLiked => dogClassifiedLiked.dogClassifiedId)
+      dogClassifiedsLiked: dogClassifiedsLiked.map(dogClassifiedLiked => dogClassifiedLiked.dogClassifiedId),
+      dogBreedsLiked: dogBreedsLiked.map(dogBreedLiked => dogBreedLiked.dogBreedId),
     }}>
       {children}
     </UserContext.Provider>

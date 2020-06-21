@@ -1,11 +1,15 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
 import gql from 'graphql-tag';
 import { Emoji } from 'emoji-mart';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { Chat, Favorite, FormSearch } from 'grommet-icons';
 import { useForm } from "react-hook-form";
+
+import { GET_USER_LIKED } from '../graphql/dogClassifiedsLike';
+import { TOGGLE_DOG_BREED_LIKE } from '../graphql/dogBreedsLike';
 import Select from '../components/Select';
+import { UserContext } from '../providers/UserProvider';
 
 const GET_DOG_BREEDS = gql`
   query getDogBreeds($search: String, $orderBy: BREED_ORDER_BY) {
@@ -13,12 +17,17 @@ const GET_DOG_BREEDS = gql`
       id
       name
       image
+      like
     }
   }
 `;
 
 const dogBreeds = () => {
+  const { dogBreedsLiked } = useContext(UserContext);
   const { loading, error, data: { getDogBreeds } = {} } = useQuery(GET_DOG_BREEDS);
+  const [toggleDogbreedLike] = useMutation(TOGGLE_DOG_BREED_LIKE, {
+    refetchQueries: [{ query: GET_USER_LIKED }, { query: GET_DOG_BREEDS }]
+  });
   const [getFilteredDogBreeds, {
     loading: filteredDogBreedsLoading, data: { getDogBreeds: filteredDogBreeds } = {}
   }] = useLazyQuery(GET_DOG_BREEDS);
@@ -40,13 +49,13 @@ const dogBreeds = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container lg:mx-auto py-2 lg:py-16">
-        <h2 className="text-2xl font-bold tracking-wider mb-4 lg:mb-12">Toutes les races de chiens</h2>
-        <p className="text-m text-gray-600 mt-3 mb-12 sm:mb-2">
+        <h2 className="px-2 lg:px-0 text-2xl leading-tight font-bold tracking-wider">Toutes les races de chiens</h2>
+        <p className="px-2 lg:px-0 text-m leading-tight text-gray-600 mt-3 sm:mb-2">
           Découvrez toutes les races de chiens, avec de nombreux détails sur leurs comportements, l'éducation, etc.
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 
           <Emoji emoji={{ id: 'dog2' }} size={24} />
         </p>
-        <div className="flex px-2 lg:px-0 flex-col sm:flex-row justify-end my-8">
+        <div className="flex px-2 lg:px-0 flex-col sm:flex-row justify-end mt-4 lg:mt-8 mb-8">
           <div class="w-full lg:w-64 mx-0 lg:mx-4">
             <label className="uppercase text-sm text-gray-600">Rechercher: </label>
             <div className="relative">
@@ -98,8 +107,12 @@ const dogBreeds = () => {
                       <span>1k+</span>
                     </div>
                     <div className="flex items-center font-xs text-gray-700">
-                      <Favorite className="mr-1" />
-                      <span>312</span>
+                      <Favorite
+                        className="cursor-pointer mr-1"
+                        color={dogBreedsLiked.includes(dogBreed.id) && '#e53e3e'}
+                        onClick={() => toggleDogbreedLike({ variables: { dogBreedId: dogBreed.id } })}
+                      />
+                      <span>{dogBreed.like}</span>
                     </div>
                   </div>
                 </div>

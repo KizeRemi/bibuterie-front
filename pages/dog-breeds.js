@@ -48,8 +48,8 @@ const dogBreeds = () => {
         <title>La bibuterie - Toutes les races</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container lg:mx-auto py-2 lg:py-16">
-        <h2 className="px-2 lg:px-0 text-2xl leading-tight font-bold tracking-wider">Toutes les races de chiens</h2>
+      <div className="container lg:mx-auto py-2 lg:py-12">
+        <h2 className="px-2 lg:px-0 text-2xl leading-tight font-bold tracking-wider py-4">Toutes les races de chiens</h2>
         <p className="px-2 lg:px-0 text-m leading-tight text-gray-600 mt-3 sm:mb-2">
           Découvrez toutes les races de chiens, avec de nombreux détails sur leurs comportements, l'éducation, etc.
           Vous pourrez également accéder aux commentaires de nombreux maitres chiens qui peuvent partager leurs expériences canines ! 

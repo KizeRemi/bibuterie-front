@@ -48,9 +48,9 @@ const dogClassifiedsListing = () => {
         <title>La bibuterie - Annonces</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container lg:mx-auto py-2 lg:py-16">
-        <h2 className="px-2 lg:px-0 text-2xl leading-tight font-bold tracking-wider">Toutes nos annonces de chiots</h2>
-        <div className="flex px-2 lg:px-0 flex-col sm:flex-row items-center justify-end mt-2 lg:mt-8 mb-8">
+      <div className="container lg:mx-auto py-2 lg:py-12">
+        <h2 className="px-2 lg:px-0 text-2xl leading-tight font-bold tracking-wider py-4">Toutes nos annonces de chiots</h2>
+        <div className="flex px-2 lg:px-0 flex-col sm:flex-row items-center justify-end mt-2 lg:mt-4 mb-8">
           <div className="mx-4 w-full lg:w-64">
             <Select
               onChange={handleSubmit(submitSearch)}
@@ -61,7 +61,7 @@ const dogClassifiedsListing = () => {
             >
               <option value="">Toutes les races</option>
               {dogBreeds && dogBreeds.map(dogBreed => (
-                  <option key={dogBreed.id} value={dogBreed.id}>{dogBreed.name}</option>)
+                <option key={dogBreed.id} value={dogBreed.id}>{dogBreed.name}</option>)
               )}
             </Select>
           </div>

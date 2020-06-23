@@ -101,7 +101,7 @@ export const NavBar = () => {
                       href="#"
                       className="flex items-center py-2 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900"
                     >
-                      Mon profile
+                      Mon profil
                     </a>
                     <a
                       href="#"
@@ -109,13 +109,15 @@ export const NavBar = () => {
                     >
                       Ma messagerie
                     </a>
-                    <a
-                      href="#"
-                      className="flex items-center py-2 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900"
-                    >
-                      Mes annonces favorites
-                      <span class="inline-flex items-center justify-center text-center bg-red-500 h-5 w-5 rounded-full text-xs text-white mx-2">{dogClassifiedsLiked.length}</span>
-                    </a>
+                    <Link href="/dog-classifieds-liked">
+                      <a
+                        href="/dog-classifieds-liked"
+                        className="flex items-center py-2 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900"
+                      >
+                        Mes annonces favorites
+                        <span class="inline-flex items-center justify-center text-center bg-red-500 h-5 w-5 rounded-full text-xs text-white mx-2">{dogClassifiedsLiked.length}</span>
+                      </a>
+                    </Link>
                     <Link href="/add-farm">
                       <a className="bg-gray-800 inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase">
                         Je suis un professionel
@@ -182,7 +184,7 @@ export const NavBar = () => {
             href="#"
             className="flex items-center py-2 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900"
           >
-            Mon profile
+            Mon profil
           </a>
           <a
             href="#"
@@ -190,12 +192,12 @@ export const NavBar = () => {
           >
             Ma messagerie
           </a>
-          <a
-            href="#"
-            className="flex items-center py-2 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900"
-          >
-            Mes annonces favorites
-          </a>
+          <Link href="/dog-classifieds-liked">
+            <a className="flex items-center py-2 block w-full tracking-normal font-semibold lg:inline-block lg:mt-0 text-gray-900">
+              Mes annonces favorites
+              <span class="inline-flex items-center justify-center text-center bg-red-500 h-5 w-5 rounded-full text-xs text-white mx-2">{dogClassifiedsLiked.length}</span>
+            </a>
+          </Link>
           <Link href="/add-classified">
             <a className="gradient inline-block text-white text-xs flex items-center mt-4 mb-2 px-4 py-2 leading-none rounded-full font-bold uppercase mt-4 lg:mt-0">
               Publier une annonce
